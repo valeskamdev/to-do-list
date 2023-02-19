@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import { v4 as uuid } from 'uuid';
 
+import { Container, ToDoList } from './styles.js'
+
 function App() {
   const [list, setList] = useState([{id: uuid(), task: "Olá"}]);
   const [inputTask, setInputTask] = useState('');
@@ -16,8 +18,9 @@ function App() {
 
   return (
     
-    <div>
-      <input onChange={inputMudou} type="text" placeholder="O que tenha para fazer..." />
+    <Container>
+      <ToDoList>
+      <input onChange={inputMudou} type="text" placeholder="O que tenho para fazer..." />
       <button onClick={cliequeiBotao}>Adicionar</button>
 
       <ul>
@@ -27,8 +30,8 @@ function App() {
           ))
         }
       </ul>
-      
-    </div>
+      </ToDoList>
+    </Container>
   )
 }
 
