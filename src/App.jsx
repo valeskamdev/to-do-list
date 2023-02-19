@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import { v4 as uuid } from 'uuid';
 
+import { FaTrash, FaCheck } from "react-icons/fa";
+
 import { Container, ToDoList, Input, Button } from './styles.js'
 
 function App() {
@@ -26,7 +28,11 @@ function App() {
       <ul>
         {
           list.map(item => (
-            <li key={item.id}>{item.task}</li>
+            <div>
+              <FaCheck />
+              <li key={item.id}>{item.task}</li>
+              <FaTrash />
+            </div>
           ))
         }
       </ul>
