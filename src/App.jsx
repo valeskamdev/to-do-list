@@ -1,17 +1,12 @@
+import React, { useState } from 'react';
 import { v4 as uuid } from 'uuid';
 
 function App() {
-
-  const list = [
-    { id: uuid(), task: "Aprender os fundamentos da programação"},
-    { id: uuid(), task: "Escolher uma linguagem de programação"},
-    { id: uuid(), task: "Aprender a usar o Git e o GitHub"}
-  ]
-
-  console.log(list);
+  const [list, setList] = useState([{id: uuid(), task: "Olá"}]);
 
   function inputMudou(event) {
-    console.log(event);
+    setList([{ id: uuid(), task: event.target.value}])
+    console.log(list);
   }
 
   function cliequeiBotao() {
