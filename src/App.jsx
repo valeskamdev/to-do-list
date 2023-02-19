@@ -3,7 +3,7 @@ import { v4 as uuid } from 'uuid';
 
 import { FaTrash, FaCheck } from "react-icons/fa";
 
-import { Container, ToDoList, Input, Button } from './styles.js'
+import { Container, ToDoList, Input, Button, ListItem} from './styles.js'
 
 function App() {
   const [list, setList] = useState([{id: uuid(), task: "Olá"}]);
@@ -28,11 +28,11 @@ function App() {
       <ul>
         {
           list.map(item => (
-            <div>
-              <FaCheck />
+            <ListItem>
+              <FaCheck style={{ color: "#4F0FC5" }} />
               <li key={item.id}>{item.task}</li>
-              <FaTrash />
-            </div>
+              <FaTrash style={{ color: "#FF0000" }} />
+            </ListItem>
           ))
         }
       </ul>
