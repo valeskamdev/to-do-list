@@ -15,13 +15,18 @@ function App() {
 
   function buttonClicked() {
     setList([ ...list, { id: uuid(), task: inputTask, finished: false }])
-    console.log(list);
+    console.log(list)
   }
 
   function endTask(id) {
     const newList = list.map( item => (
       item.id === id ? { ...item, finished: !item.finished } : item
     ))
+    setList(newList)
+  }
+
+  function deletedTask(id) {
+    const newList = list.filter(item => item.id !== id)
     setList(newList)
   }
 
@@ -38,7 +43,7 @@ function App() {
             <ListItem isFinished={item.finished} key={item.id}>
               <FaCheck onClick={() => endTask(item.id)} style={{ color: "#4F0FC5" }} />
               <li>{item.task}</li>
-              <FaTrash style={{ color: "#FF0000" }} />
+              <FaTrash onClick={() => deletedTask(item.id)} style={{ color: "#FF0000" }} />
             </ListItem>
           ))
         }
