@@ -1,12 +1,10 @@
 import React, { useState } from 'react';
 import { v4 as uuid } from 'uuid';
 
-import { FaTrash, FaCheck } from "react-icons/fa";
-
-import { Container, ToDoList, Input, Button, ListItem} from './styles.js'
+import { Container, ToDoList, Input, Button, ListItem, Trash, Check, ListWithoutItems } from './styles.js'
 
 function App() {
-  const [list, setList] = useState([{id: uuid(), task: "Olá", finished: true }]);
+  const [list, setList] = useState([]);
   const [inputTask, setInputTask] = useState('');
 
   function inputChanged(event) {
@@ -14,8 +12,9 @@ function App() {
   }
 
   function buttonClicked() {
-    setList([ ...list, { id: uuid(), task: inputTask, finished: false }])
-    console.log(list)
+    if (inputTask) {
+      setList([ ...list, { id: uuid(), task: inputTask, finished: false }])
+    }
   }
 
   function endTask(id) {
@@ -39,13 +38,18 @@ function App() {
 
       <ul>
         {
-          list.map(item => (
-            <ListItem isFinished={item.finished} key={item.id}>
-              <FaCheck onClick={() => endTask(item.id)} style={{ color: "#4F0FC5" }} />
-              <li>{item.task}</li>
-              <FaTrash onClick={() => deletedTask(item.id)} style={{ color: "#FF0000" }} />
-            </ListItem>
-          ))
+
+          list.length > 0 ? (
+            list.map(item => (
+              <ListItem isFinished={item.finished} key={item.id}>
+                <Check onClick={() => endTask(item.id)} />
+                <li>{item.task}</li>
+                <Trash onClick={() => deletedTask(item.id)} />
+              </ListItem>
+            ))
+          ) : (
+            <ListWithoutItems>Não há itens na lista</ListWithoutItems>
+          )
         }
       </ul>
       </ToDoList>
